@@ -1,0 +1,26 @@
+*zeal.txt*  A simple plugin to work with the Zeal API documentation browser
+            Author: Tom Link, micathom at gmail com
+
+This plugin provides a map (gz or |g:zeal_map|) and a command |:Zeal| to 
+query the Zeal API documentation browser (see http://zealdocs.org) for a 
+given word or the word under cursor.
+
+
+Related Work~
+
+    - See http://zealdocs.org/usage.html
+
+
+-----------------------------------------------------------------------
+Install~
+
+In order to install the vba, open the vba file in VIM and type: >
+
+    :so %%
+
+See :help vimball for details.
+
+Also available via git: http://github.com/tomtom/zeal_vim/
+
+
+%s

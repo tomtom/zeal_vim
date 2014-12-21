@@ -1,0 +1,79 @@
+*zeal.txt*  A simple plugin to work with the Zeal API documentation browser
+            Author: Tom Link, micathom at gmail com
+
+This plugin provides a map (gz or |g:zeal_map|) and a command |:Zeal| to 
+query the Zeal API documentation browser (see http://zealdocs.org) for a 
+given word or the word under cursor.
+
+
+Related Work~
+
+    - See http://zealdocs.org/usage.html
+
+
+-----------------------------------------------------------------------
+Install~
+
+In order to install the vba, open the vba file in VIM and type: >
+
+    :so %
+
+See :help vimball for details.
+
+Also available via git: http://github.com/tomtom/zeal_vim/
+
+
+========================================================================
+Contents~
+
+        g:zeal_map .......... |g:zeal_map|
+        :Zeal ............... |:Zeal|
+        g:zeal#system ....... |g:zeal#system|
+        g:zeal#cmd .......... |g:zeal#cmd|
+        g:zeal#docsets ...... |g:zeal#docsets|
+        zeal#GetDocset ...... |zeal#GetDocset()|
+        zeal#Zeal ........... |zeal#Zeal()|
+
+
+========================================================================
+plugin/zeal.vim~
+
+                                                    *g:zeal_map*
+g:zeal_map                     (default: 'gz')
+    Map for normal & visual mode to call |:Zeal|.
+
+                                                    *:Zeal*
+:Zeal [WORD]
+    Call |zeal#Zeal()| with WORD or the word under cursor.
+
+
+========================================================================
+autoload/zeal.vim~
+
+                                                    *g:zeal#system*
+g:zeal#system                  (default: has('win32') || has('win64') ? 'silent ! start %s' : 'silent !%s&')
+    How to run a shell command.
+
+                                                    *g:zeal#cmd*
+g:zeal#cmd                     (default: has('win32') || has('win64') ? 'zeal.exe' : 'zeal')
+    The zeal command.
+
+                                                    *g:zeal#docsets*
+g:zeal#docsets                 (default: {'cpp': 'C++', 'scss': 'Sass', 'scala': 'scala,akka,java', 'sh': 'Bash', 'tex': 'Latex'})
+    You can query multiple docsets by separating names with a comma, 
+    e.g. scala,akka
+    Based on https://github.com/KabbAmine/zeavim.vim/blob/master/plugin/zeavim.vim
+
+    Buffer-local pendant: `b:zeal_docsets`
+    Can also be configured via `g:zeal#docset_{&ft}`.
+
+                                                    *zeal#GetDocset()*
+zeal#GetDocset(filetype)
+
+                                                    *zeal#Zeal()*
+zeal#Zeal(word, filetype)
+    Query zeal.
+
+
+
+vim:tw=78:fo=w2croql:isk=!-~,^*,^|,^":ts=8:ft=help:norl:
