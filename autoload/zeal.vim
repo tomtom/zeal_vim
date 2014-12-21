@@ -26,7 +26,7 @@ function! zeal#Zeal(word, filetype) "{{{3
     elseif has_key(g:zeal#docsets, a:filetype)
         let ds = g:zeal#docsets[a:filetype]
     else
-        let ds = substitute(a:filetype, '^.', '\u\0', '')
+        let ds = a:filetype
     endif
     let cmd = printf("%s --query '%s:%s'", g:zeal#cmd, ds, a:word)
     exec printf(g:zeal#system, cmd)
