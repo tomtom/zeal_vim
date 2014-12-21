@@ -1,6 +1,6 @@
 " @Author:      Tom Link (mailto:micathom AT gmail com?subject=[vim])
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
-" @Revision:    20
+" @Revision:    22
 
 
 if !exists('g:zeal#system')
@@ -28,7 +28,7 @@ function! zeal#Zeal(word, filetype) "{{{3
     else
         let ds = a:filetype
     endif
-    let cmd = printf("%s --query '%s:%s'", g:zeal#cmd, ds, a:word)
+    let cmd = printf("%s --query '%s:%s'", g:zeal#cmd, ds, shellescape(a:word, 1))
     exec printf(g:zeal#system, cmd)
 endf
 
