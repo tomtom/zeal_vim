@@ -1,6 +1,6 @@
 " @Author:      Tom Link (mailto:micathom AT gmail com?subject=[vim])
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
-" @Revision:    35
+" @Revision:    45
 
 
 if !exists('g:zeal#system')
@@ -38,15 +38,30 @@ function! zeal#GetDocset(filetype) "{{{3
 endf
 
 
-" Query zeal.
-function! zeal#Zeal(word, filetype) "{{{3
+function! s:GetZealCmdf(filetype) "{{{3
     if exists('b:zeal_docsets')
         let ds = b:zeal_docsets
     else
         let ds = zeal#GetDocset(a:filetype)
     endif
+    let cmd = printf("%s --query '%s:%%s'", g:zeal#cmd, ds)
+    return cmd
+endf
+
+
+" Query zeal.
+function! zeal#Zeal(word, filetype) "{{{3
     " TLogVAR a:word, a:filetype
-    let cmd = printf("%s --query '%s:%s'", g:zeal#cmd, ds, shellescape(a:word, 1))
+    let cmd = printf(s:GetZealCmdf(a:filetype), shellescape(a:word, 1))
     exec printf(g:zeal#system, cmd)
+endf
+
+
+function! zeal#SetKeywordPrg(force) "{{{3
+    " TLogVAR a:force, &g:keywordprg, &l:keywordprg
+    if a:force || (empty(&l:keywordprg) && empty(maparg('K', 'n')))
+        " let &l:keywordprg = printf(s:GetZealCmdf(&filetype), '')
+        noremap <buffer> <silent> K :call zeal#Zeal(expand("<cword>"), &filetype)<cr>
+    endif
 endf
 

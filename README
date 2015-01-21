@@ -1,3 +1,15 @@
+This plugin provides a map (gz or |g:zeal_map|) and a command |:Zeal| to 
+query the Zeal API documentation browser (see http://zealdocs.org) for a 
+given word or the word under cursor.
+
+
+Related Work~
+
+    - See http://zealdocs.org/usage.html
+
+
+-----------------------------------------------------------------------
+
 Status:  Experimental
 Install: See http://github.com/tomtom/vimtlib/blob/master/INSTALL.TXT
 See http://github.com/tomtom for related plugins.
