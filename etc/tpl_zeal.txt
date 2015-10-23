@@ -1,9 +1,9 @@
 *zeal.txt*  A simple plugin to work with the Zeal API documentation browser
             Author: Tom Link, micathom at gmail com
 
-This plugin provides a map (gz or |g:zeal_map|) and a command |:Zeal| to 
-query the Zeal API documentation browser (see http://zealdocs.org) for a 
-given word or the word under cursor.
+This plugin provides a map (<F1> or |g:zeal_map|) and a command |:Zeal| to 
+query the Zeal API documentation browser (see http://zealdocs.org) for a given 
+word or the word under cursor.
 
 
 Related Work~

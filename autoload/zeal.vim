@@ -1,6 +1,6 @@
 " @Author:      Tom Link (mailto:micathom AT gmail com?subject=[vim])
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
-" @Revision:    45
+" @Revision:    49
 
 
 if !exists('g:zeal#system')
@@ -22,7 +22,7 @@ if !exists('g:zeal#docsets')
     "
     " Buffer-local pendant: `b:zeal_docsets`
     " Can also be configured via `g:zeal#docset_{&ft}`.
-    let g:zeal#docsets = {'cpp': 'C++', 'scss': 'Sass', 'scala': 'scala,akka,java', 'sh': 'Bash', 'tex': 'Latex'}   "{{{2
+    let g:zeal#docsets = {'cpp': 'c++', 'go': 'go', 'scss': 'sass', 'scala': 'scala,akka,java', 'sh': 'bash', 'tex': 'latex'}   "{{{2
 endif
 
 
@@ -58,7 +58,7 @@ endf
 
 
 function! zeal#SetKeywordPrg(force) "{{{3
-    " TLogVAR a:force, &g:keywordprg, &l:keywordprg
+    " TLogVAR a:force, &g:keywordprg, &l:keywordprg, maparg('K', 'n')
     if a:force || (empty(&l:keywordprg) && empty(maparg('K', 'n')))
         " let &l:keywordprg = printf(s:GetZealCmdf(&filetype), '')
         noremap <buffer> <silent> K :call zeal#Zeal(expand("<cword>"), &filetype)<cr>

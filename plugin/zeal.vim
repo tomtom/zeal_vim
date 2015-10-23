@@ -2,7 +2,7 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @GIT:         http://github.com/tomtom/zeal_vim
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
-" @Revision:    34
+" @Revision:    35
 " GetLatestVimScripts: 0 0 :AutoInstall: zeal.vim
 
 if &cp || exists("loaded_zeal")
@@ -57,6 +57,9 @@ if g:zeal_set_keywordprg > 0
         autocmd!
         autocmd Filetype * call zeal#SetKeywordPrg(g:zeal_set_keywordprg == 2)
     augroup END
+    if !has('vim_starting')
+        call zeal#SetKeywordPrg(g:zeal_set_keywordprg == 2)
+    endif
 endif
 
 
