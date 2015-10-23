@@ -1,9 +1,9 @@
 *zeal.txt*  A simple plugin to work with the Zeal API documentation browser
             Author: Tom Link, micathom at gmail com
 
-This plugin provides a map (gz or |g:zeal_map|) and a command |:Zeal| to 
-query the Zeal API documentation browser (see http://zealdocs.org) for a 
-given word or the word under cursor.
+This plugin provides a map (<F1> or |g:zeal_map|) and a command |:Zeal| to 
+query the Zeal API documentation browser (see http://zealdocs.org) for a given 
+word or the word under cursor.
 
 
 Related Work~
@@ -26,21 +26,40 @@ Also available via git: http://github.com/tomtom/zeal_vim/
 ========================================================================
 Contents~
 
-        g:zeal_map .......... |g:zeal_map|
-        :Zeal ............... |:Zeal|
-        g:zeal#system ....... |g:zeal#system|
-        g:zeal#cmd .......... |g:zeal#cmd|
-        g:zeal#docsets ...... |g:zeal#docsets|
-        zeal#GetDocset ...... |zeal#GetDocset()|
-        zeal#Zeal ........... |zeal#Zeal()|
+        g:zeal_set_keywordprg ... |g:zeal_set_keywordprg|
+        g:zeal_map .............. |g:zeal_map|
+        g:zeal_imap ............. |g:zeal_imap|
+        :Zeal ................... |:Zeal|
+        g:zeal#system ........... |g:zeal#system|
+        g:zeal#cmd .............. |g:zeal#cmd|
+        g:zeal#docsets .......... |g:zeal#docsets|
+        zeal#GetDocset .......... |zeal#GetDocset()|
+        zeal#Zeal ............... |zeal#Zeal()|
+        zeal#SetKeywordPrg ...... |zeal#SetKeywordPrg()|
+        K ....................... |K|
 
 
 ========================================================================
 plugin/zeal.vim~
 
+                                                    *g:zeal_set_keywordprg*
+g:zeal_set_keywordprg          (default: 1)
+    If 0, don't set |keywordprg|.
+    If 1, set |keywordprg| if no buffer-local value for |keywordprg| 
+    was set.
+    if 2, always set |keywordprg|.
+    CAUTION: The variable must be set before loading the plugin.
+    NOTE: This doesn't actually set |keywordprg| but it defines a 
+    buffer-local map for K.
+
                                                     *g:zeal_map*
-g:zeal_map                     (default: 'gz')
+g:zeal_map                     (default: '<F1>')
     Map for normal & visual mode to call |:Zeal|.
+
+                                                    *g:zeal_imap*
+g:zeal_imap                    (default: '<F1>')
+    Map for insert & selecttion mode to call |:Zeal|.
+    NOTE: In insert mode, the map will return to normal mode.
 
                                                     *:Zeal*
 :Zeal [WORD]
@@ -59,7 +78,7 @@ g:zeal#cmd                     (default: has('win32') || has('win64') ? 'zeal.ex
     The zeal command.
 
                                                     *g:zeal#docsets*
-g:zeal#docsets                 (default: {'cpp': 'C++', 'scss': 'Sass', 'scala': 'scala,akka,java', 'sh': 'Bash', 'tex': 'Latex'})
+g:zeal#docsets                 (default: {'cpp': 'c++', 'go': 'go', 'scss': 'sass', 'scala': 'scala,akka,java', 'sh': 'bash', 'tex': 'latex'})
     You can query multiple docsets by separating names with a comma, 
     e.g. scala,akka
     Based on https://github.com/KabbAmine/zeavim.vim/blob/master/plugin/zeavim.vim
@@ -73,6 +92,13 @@ zeal#GetDocset(filetype)
                                                     *zeal#Zeal()*
 zeal#Zeal(word, filetype)
     Query zeal.
+
+                                                    *zeal#SetKeywordPrg()*
+zeal#SetKeywordPrg(force)
+
+                                                    *K*
+K ... :call zeal#Zeal(expand("<cword>"), &filetype)<cr>
+    let &l:keywordprg = printf(s:GetZealCmdf(&filetype), '')
 
 
 
