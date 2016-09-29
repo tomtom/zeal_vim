@@ -1,6 +1,6 @@
 " @Author:      Tom Link (mailto:micathom AT gmail com?subject=[vim])
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
-" @Revision:    49
+" @Revision:    55
 
 
 if !exists('g:zeal#system')
@@ -44,7 +44,7 @@ function! s:GetZealCmdf(filetype) "{{{3
     else
         let ds = zeal#GetDocset(a:filetype)
     endif
-    let cmd = printf("%s --query '%s:%%s'", g:zeal#cmd, ds)
+    let cmd = printf("%s --query %s:%%s", g:zeal#cmd, shellescape(ds, 1))
     return cmd
 endf
 
@@ -62,6 +62,7 @@ function! zeal#SetKeywordPrg(force) "{{{3
     if a:force || (empty(&l:keywordprg) && empty(maparg('K', 'n')))
         " let &l:keywordprg = printf(s:GetZealCmdf(&filetype), '')
         noremap <buffer> <silent> K :call zeal#Zeal(expand("<cword>"), &filetype)<cr>
+        xnoremap <buffer> <silent> K y:call zeal#Zeal(@0, &filetype)<cr>
     endif
 endf
 
