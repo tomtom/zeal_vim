@@ -37,6 +37,7 @@ Contents~
         zeal#Zeal ............... |zeal#Zeal()|
         zeal#SetKeywordPrg ...... |zeal#SetKeywordPrg()|
         K ....................... |K|
+        x_K ..................... |x_K|
 
 
 ========================================================================
@@ -99,6 +100,9 @@ zeal#SetKeywordPrg(force)
                                                     *K*
 K ... :call zeal#Zeal(expand("<cword>"), &filetype)<cr>
     let &l:keywordprg = printf(s:GetZealCmdf(&filetype), '')
+
+                                                    *x_K*
+x_K ... y:call zeal#Zeal(@0, &filetype)<cr>
 
 
 
